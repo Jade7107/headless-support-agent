@@ -55,6 +55,9 @@ class Prometheus(BaseModel):
 
 
 class Settings(BaseSettings):
+    project_name: str | None = None
+    environment: str | None = None
+    groq_api_key: str | None = None
     security: Security = Field(default_factory=Security)
     database: Database = Field(default_factory=Database)
     prometheus: Prometheus = Field(default_factory=Prometheus)

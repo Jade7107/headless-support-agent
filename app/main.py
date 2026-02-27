@@ -9,6 +9,10 @@ from app.core import lifespan
 from app.core.config import get_settings
 from app.probe.views import router as probe_router
 
+# --- OUR NEW AI AGENT ROUTER ---
+from app.agent.chat import router as chat_router
+# -------------------------------
+
 logger = logging.getLogger(__name__)
 
 
@@ -23,6 +27,10 @@ app = FastAPI(
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
 app.include_router(probe_router, prefix="/probe", tags=["probe"])
+
+# --- REGISTERING THE AGENT ENDPOINT ---
+app.include_router(chat_router, prefix="/api/v1/support")
+# --------------------------------------
 
 # Sets all CORS enabled origins
 app.add_middleware(
